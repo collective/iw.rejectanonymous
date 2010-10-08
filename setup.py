@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.0.1'
+version = '1.0.2dev'
 
 README = os.path.join(os.path.dirname(__file__),
                       'iw', 'rejectanonymous', 'docs', 'README.txt')
