@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+  
+  <subscriber
+      handler=".insertRejectAnonymousHook"
+      for="iw.rejectanonymous.IPrivateSite
+           zope.app.publication.interfaces.IBeforeTraverseEvent"
+      />
+
+</configure>
