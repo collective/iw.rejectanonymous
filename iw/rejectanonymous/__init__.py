@@ -25,7 +25,7 @@ from zExceptions import Unauthorized
 
 valid_ids = set(('login_form', 'require_login', 'login.js', 'spinner.gif',
                  'mail_password_form', 'mail_password', 'contact-info',
-                 'pwreset_form', 'pwreset_finish'))
+                 'pwreset_form', 'pwreset_finish', 'favicon.ico'))
 
 valid_subparts = set(('portal_css', 'portal_javascripts', 'passwordreset'))
 
