@@ -2,16 +2,18 @@
 1.0.2 (unreleased)
 ------------------
 
-    Enable favicon
+  - Enable favicon.
+    [thomasdesvenain]
 
 
 1.0.1 (2010-10-08)
 ------------------
 
-    Enable password reset system
+  - Enable password reset system.
+    [thomasdesvenain]
 
 
 1.0.0 - 2008-02-11
 ------------------
 
-	Initial release
+  - Initial release
