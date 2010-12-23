@@ -1,19 +1,29 @@
+Changes log
+===========
 
-1.0.2 (unreleased)
+1.0.2 - 2010-12-23
 ------------------
 
-  - Enable favicon.
-    [thomasdesvenain]
+- z3c.autoinclude awareness added so the ZCML slug does not need to be
+  explicitely added in buildout *.cfg.
+  [glenfant]
+
+- Add customization utilities and doc (add new enabled ids and subpaths)
+  [glenfant]
+
+- Enable favicon.
+  [thomasdesvenain]
 
 
-1.0.1 (2010-10-08)
+1.0.1 - 2010-10-08
 ------------------
 
-  - Enable password reset system.
-    [thomasdesvenain]
+- Enable password reset system.
+  [thomasdesvenain]
 
 
 1.0.0 - 2008-02-11
 ------------------
 
-  - Initial release
+- Initial release
+  [bmathieu]

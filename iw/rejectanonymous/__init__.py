@@ -29,6 +29,29 @@ valid_ids = set(('login_form', 'require_login', 'login.js', 'spinner.gif',
 
 valid_subparts = set(('portal_css', 'portal_javascripts', 'passwordreset'))
 
+# Customization functions
+def addValidIds(*new_ids):
+    """A customized Plone site may need to publish other ids as resources
+    of the login process. The policy or third party component just need to
+    use this function for this to happen.
+
+    :param new_ids: one or more ids
+    """
+    global valid_ids
+    valid_ids |= set(new_ids)
+    return
+
+def addValidSubparts(*new_subparts):
+    """A customized Plone site may need to publish other subparts for resources
+    of the login process. The policy or third party component just need to
+    use this function for this to happen.
+
+    :param new_subparts: one or more traversal ids
+    """
+    global valid_subparts
+    valid_subparts |= set(new_subparts)
+    return
+
 def isAnonymousUser():
     u = getSecurityManager().getUser()
     return (u is None or u.getUserName() == 'Anonymous User')
@@ -56,10 +79,5 @@ def insertRejectAnonymousHook(portal, event):
     """ """
     event.request.post_traverse(rejectAnonymous, (portal, event.request))
 
-## try:
-##     import plone.add.controlpanel
-## except ImportError:
-##     pass
-## else:
 import iw.rejectanonymous.plonecontrolpanel
 
