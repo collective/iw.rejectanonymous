@@ -52,7 +52,7 @@ By default an anonymous user can browse portal:
     >>> browser.open(portal_url)
     >>> browser.url == portal_url
     True
-    >>> browser.headers['status']
+    >>> browser.headers['status'].upper()
     '200 OK'
 
 We mark the portal with ``IPrivateSite``; this can be achieved by code or in the
@@ -123,7 +123,7 @@ Then we log in, and we will be authorized to browse the portal.
     >>> browser.open(portal_url)
     >>> browser.url == portal_url
     True
-    >>> browser.headers['status']
+    >>> browser.headers['status'].upper()
     '200 OK'
 
 Customizing
@@ -172,12 +172,12 @@ And let's check the anonymous can get these resources.
     >>> browser.open(portal_url + '/user.gif')
     >>> browser.url
     'http://nohost/plone/user.gif'
-    >>> browser.headers['status']
+    >>> browser.headers['status'].upper()
     '200 OK'
     >>> browser.open(portal_url + '/add_icon.gif')
     >>> browser.url
     'http://nohost/plone/add_icon.gif'
-    >>> browser.headers['status']
+    >>> browser.headers['status'].upper()
     '200 OK'
 
 If the custom pages available to the anonymous user require KSS, those KSS
@@ -200,7 +200,7 @@ And let's check we can now publish KSS resources to anonymous users.
     >>> browser.open(cooked_kss_url)
     >>> browser.url == cooked_kss_url
     True
-    >>> browser.headers['status']
+    >>> browser.headers['status'].upper()
     '200 OK'
 
 Contributors
