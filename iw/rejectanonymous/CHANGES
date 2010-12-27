@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.0.2 - 2010-12-23
+1.0.2 (2010-12-27)
 ------------------
 
 - z3c.autoinclude awareness added so the ZCML slug does not need to be
