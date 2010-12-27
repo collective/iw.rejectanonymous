@@ -10,7 +10,7 @@ version = read('iw', 'rejectanonymous', 'version.txt')
 
 setup(name='iw.rejectanonymous',
       version=version,
-      description="Disallow access to a folder and its children if user is anonymous",
+      description="Disallow access to a Plone folder and its children if user is anonymous",
       long_description=(read('iw', 'rejectanonymous', 'docs', 'README.txt')
                         + '\n\n'
                         + read('iw', 'rejectanonymous', 'CHANGES')),
