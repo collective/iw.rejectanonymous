@@ -6,14 +6,14 @@ def read(*names):
     path = os.path.join(here, *names)
     return open(path, 'r').read().strip()
 
-version = read('iw', 'rejectanonymous', 'version.txt')
+version = 1.3
 
 setup(name='iw.rejectanonymous',
       version=version,
       description="Disallow access to a Plone folder and its children if user is anonymous",
-      long_description=(read('iw', 'rejectanonymous', 'docs', 'README.txt')
+      long_description=(read('README.rst')
                         + '\n\n'
-                        + read('iw', 'rejectanonymous', 'CHANGES')),
+                        + read('CHANGES.rst')),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
           "Framework :: Plone",

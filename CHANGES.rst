@@ -1,11 +1,15 @@
 Changes log
 ===========
 
-1.0.3 (unreleased)
+1.1 (unreleased)
 ------------------
 
 - Enable portal_kss subparts.
   [thomasdesvenain]
+
+- In plone 4, use of base_properties is sketchy and likely incompat.
+  Catch error if needed and use better default for logo.
+  [eleddy]
 
 
 1.0.2 (2010-12-27)
