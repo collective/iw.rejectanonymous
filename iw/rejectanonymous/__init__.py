@@ -25,7 +25,8 @@ from zExceptions import Unauthorized
 
 valid_ids = set(('login_form', 'require_login', 'login.js', 'spinner.gif',
                  'mail_password_form', 'mail_password', 'contact-info',
-                 'pwreset_form', 'pwreset_finish', 'favicon.ico'))
+                 'pwreset_form', 'pwreset_finish', 'favicon.ico',
+                 'logo.jpg', 'logo.png'))
 
 valid_subparts = set(('portal_css', 'portal_javascripts', 'passwordreset',
                       'portal_kss'))
@@ -58,8 +59,11 @@ def isAnonymousUser():
     return (u is None or u.getUserName() == 'Anonymous User')
 
 def getPortalLogoId(portal):
-    props = portal['base_properties']
-    return props.getProperty('logoName')
+    try:
+        props = portal.base_properties
+        return props.getProperty('logoName')
+    except:  # unsupported versions
+        return None
 
 def rejectAnonymous(portal, request):
 
@@ -71,7 +75,7 @@ def rejectAnonymous(portal, request):
         logo_id = getPortalLogoId(portal)
 
         if url and not (item_id in valid_ids
-                        or item_id == logo_id
+                        or (logo_id is not None and item_id == logo_id) 
                         or [path for path in url
                             if path in valid_subparts]):
             raise Unauthorized, "Anonymous rejected"
