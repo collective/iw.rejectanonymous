@@ -4,6 +4,20 @@ Changes log
 1.1 (unreleased)
 ------------------
 
+- Added doc for customization
+  [glenfant]
+
+- Re enabled tests
+  [glenfant]
+
+- Disabled some viewlets to anonymous and added doc for customization.
+  See https://github.com/collective/iw.rejectanonymous/issues/1
+  [glenfant]
+
+- Added valid subpart prefixes such iw.rejectanonymous does not conflict with
+  plone.app.theming (Diazo)
+  [glenfant]
+
 - Enable portal_kss subparts.
   [thomasdesvenain]
 

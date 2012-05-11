@@ -6,7 +6,7 @@ def read(*names):
     path = os.path.join(here, *names)
     return open(path, 'r').read().strip()
 
-version = 1.3
+version = 1.1
 
 setup(name='iw.rejectanonymous',
       version=version,
@@ -14,11 +14,14 @@ setup(name='iw.rejectanonymous',
       long_description=(read('README.rst')
                         + '\n\n'
                         + read('CHANGES.rst')),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
           "Framework :: Plone",
+          "Framework :: Plone :: 3.2",
+          "Framework :: Plone :: 3.3",
+          "Framework :: Plone :: 4.0",
+          "Framework :: Plone :: 4.1",
           "Framework :: Zope2",
-          "Framework :: Zope3",
           "Programming Language :: Python",
           "Topic :: Software Development :: Libraries :: Python Modules",
           ],

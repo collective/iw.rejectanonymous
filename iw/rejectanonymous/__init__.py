@@ -17,19 +17,24 @@
 """rejectanonymous initialization"""
 from zope.interface import Interface
 from AccessControl import getSecurityManager
+from zExceptions import Unauthorized
+
 
 class IPrivateSite(Interface):
     """Marker for sites requiring login"""
 
-from zExceptions import Unauthorized
 
-valid_ids = set(('login_form', 'require_login', 'login.js', 'spinner.gif',
-                 'mail_password_form', 'mail_password', 'contact-info',
-                 'pwreset_form', 'pwreset_finish', 'favicon.ico',
-                 'logo.jpg', 'logo.png'))
+valid_ids = frozenset((
+    'login_form', 'require_login', 'login.js', 'spinner.gif',
+    'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form',
+    'pwreset_finish', 'favicon.ico', 'logo.jpg', 'logo.png'
+    ))
 
-valid_subparts = set(('portal_css', 'portal_javascripts', 'passwordreset',
-                      'portal_kss'))
+valid_subparts = frozenset((
+    'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
+    ))
+
+valid_subpart_prefixes = frozenset(('++resource++', '++theme++'))
 
 # Customization functions
 def addValidIds(*new_ids):
@@ -54,6 +59,17 @@ def addValidSubparts(*new_subparts):
     valid_subparts |= set(new_subparts)
     return
 
+def addValidSubpartPrefixes(*new_prefixes):
+    """A customized Plone site may need to publish other subpart prefixes for
+    resources of the login process. The policy or third party component just
+    need to use this function for this to happen.
+
+    :param new_subparts: one or more traversal ids
+    """
+    global valid_subpart_prefixes
+    valid_subpart_prefixes |= set(new_prefixes)
+
+# Utilities
 def isAnonymousUser():
     u = getSecurityManager().getUser()
     return (u is None or u.getUserName() == 'Anonymous User')
@@ -74,10 +90,14 @@ def rejectAnonymous(portal, request):
         item_id = url[-1]
         logo_id = getPortalLogoId(portal)
 
-        if url and not (item_id in valid_ids
-                        or (logo_id is not None and item_id == logo_id) 
-                        or [path for path in url
-                            if path in valid_subparts]):
+        if url and not (
+            item_id in valid_ids
+            or (logo_id is not None and item_id == logo_id)
+            or [path for path in url
+                if path in valid_subparts]
+            or [path for path in url
+                if [v for v in valid_subpart_prefixes if path.startswith(v)]]
+                ):
             raise Unauthorized, "Anonymous rejected"
 
 def insertRejectAnonymousHook(portal, event):

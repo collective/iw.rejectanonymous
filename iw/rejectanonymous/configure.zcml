@@ -1,10 +1,27 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope">
-  
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
   <subscriber
       handler=".insertRejectAnonymousHook"
       for="iw.rejectanonymous.IPrivateSite
            zope.app.publication.interfaces.IBeforeTraverseEvent"
       />
+
+  <browser:viewlet
+    name="plone.personal_bar"
+    for="iw.rejectanonymous.IPrivateSite"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+    permission="cmf.SetOwnProperties"
+    />
+
+  <browser:viewlet
+    name="plone.searchbox"
+    for="iw.rejectanonymous.IPrivateSite"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+    permission="cmf.SetOwnProperties"
+    />
 
 </configure>

@@ -43,165 +43,101 @@ Re-run buildout, then open the "Security" control panel of any Plone site of
 your instance. A new **Private site** checkbox lets you (de)activate
 ``ìw.rejectanonymous``.
 
-How to use iw.rejectanonymous ?
-===============================
+Customization
+=============
 
-By default an anonymous user can browse portal:
+``iw.rejectanonymous`` enables the publication of some resources to the
+anonymous user, more specifically to enable all media and resources required
+from the standard loging page and the password reset page.
 
-    >>> portal_url = self.portal.absolute_url()
-    >>> browser.open(portal_url)
-    >>> browser.url == portal_url
-    True
-    >>> browser.headers['status'].upper()
-    '200 OK'
+Adding valid ids
+----------------
 
-We mark the portal with ``IPrivateSite``; this can be achieved by code or in the
-ZMI using "Interfaces" tab on the portal object. Now Anonymous will get
-Unauthorized exception. In a plone site this should results in a redirect to
-login form.
+If your customized logging page requires some specific images or your site
+policy component provides a signup page which name is not ``login_form`` you may
+add additional ids (url last part) that are available to anonymous users.
 
-.. admonition::
-   Security control panel
+::
 
-   The Plone "Security" control panel has now a new **Private site** option for
-   this. A site manager does not need to go in ZMI.
+  from iw.rejectanonymous import addValidIds
+  ...
+  addValidIds('some_image.png', 'my_login_form')
 
-Marking the site as private.
 
-    >>> from zope.interface import alsoProvides
-    >>> from iw.rejectanonymous import IPrivateSite
-    >>> alsoProvides(self.portal, IPrivateSite)
-    >>> browser.open(portal_url)
-    Traceback (most recent call last):
-    ...
-    Unauthorized: ...
+Adding valid subparts
+---------------------
 
-Login form and some styles resources are still accessible:
+If you want to let anonymous users browse the pages of some folders, you need to
+add valid subparts.
 
-    >>> login_form_url = self.portal.login_form.absolute_url()
-    >>> browser.open(login_form_url)
-    >>> browser.url == login_form_url
-    True
-    >>> require_login_url = self.portal.require_login.absolute_url()
-    >>> browser.open(require_login_url)
-    >>> browser.url == require_login_url
-    True
-    >>> cooked_css = self.portal.portal_css.getCookedResources()[0]
-    >>> cooked_css_url = '%s/portal_css/%s' % (portal_url, cooked_css.getId())
-    >>> browser.open(cooked_css_url)
-    >>> browser.url == cooked_css_url
-    True
-    >>> cooked_js = self.portal.portal_javascripts.getCookedResources()[0]
-    >>> cooked_js_url = '%s/portal_javascripts/%s' % (portal_url, cooked_js.getId())
-    >>> browser.open(cooked_js_url)
-    >>> browser.url == cooked_js_url
-    True
-    >>> logo_id = self.portal.base_properties.getProperty('logoName')
-    >>> logo_url = self.portal[logo_id].absolute_url()
-    >>> browser.open(logo_url)
-    >>> browser.url == logo_url
-    True
-    >>> mail_password_form_url = self.portal.mail_password_form.absolute_url()
-    >>> browser.open(mail_password_form_url)
-    >>> browser.url == mail_password_form_url
-    True
+::
 
-Reset password tool is accessible as well.
+  from iw.rejectanonymous import addValidSubparts
+  ...
+  addValidSubparts('disclaimer', 'public_section')
 
-    >>> passwordreset_url = self.portal.passwordreset.absolute_url()
-    >>> browser.open(passwordreset_url)
-    >>> browser.url == passwordreset_url
-    True
+Adding valid subparts prefixes
+------------------------------
 
-Then we log in, and we will be authorized to browse the portal.
+If you want to let anonymous users browse the pages of some folders with
+specific prefixes, you need to add valid subpart prefixes.
 
-    >>> from Products.PloneTestCase.setup import default_user, default_password
-    >>> browser.open(login_form_url)
-    >>> browser.getControl(name='__ac_name').value = default_user
-    >>> browser.getControl(name='__ac_password').value = default_password
-    >>> browser.getControl(name="submit").click()
-    >>> browser.open(portal_url)
-    >>> browser.url == portal_url
-    True
-    >>> browser.headers['status'].upper()
-    '200 OK'
+::
 
-Customizing
-===========
+  from iw.rejectanonymous import addValidSubpartPrefixes
+  ...
+  addValidSubpartPrefixes('public_')
 
-The default setup of authorized resources are exhaustive for a vanilla Plone
-site, but some sites that are customized in depths, particularly with a
-dedicated theme may need to publish other resources in the pages available to
-the anonymous user, or an additional page (disclaimer, ...) linked from the
-login page.
+Hiding viewlets
+---------------
 
-Your policy or theme component may use the ``iw.rejectanonymous.addValidIds`` to
-enable new object ids to be published, and
-``iw.rejectanonymous.addValidSubparts`` to add traversed resources available to
-the anonymous user. The only argument required by these two functions is a
-single string to add one id or subpart or a sequence of string of such ids or
-subparts.
+You may hide viewlets from the views of the site (login form, password reset
+form). You need for this to add such lines in your site policy ZCML.
 
-First we logout to verify this.
+::
 
-    >>> browser.open(portal_url + '/logout')
-    Traceback (most recent call last):
-    ...
-    Unauthorized: ...
+  <browser:viewlet
+    name="original.viewlet.name"
+    for="iw.rejectanonymous.IPrivateSite"
+    manager="original.viewlet.manager.Interface"
+    class="original.viewlet.Class"
+    permission="cmf.SetOwnProperties"
+  />
 
-Suppose our theme shows the ``user.gif`` and ``add_icon.gif`` icons for some
-reason. The standard setup of ``iw.rejectanonymous`` does not enable this and
-your page will not show as expected to the anonymous user.
+``name``
+  Keep the original viewlet name.
 
-    >>> browser.open(portal_url + '/user.gif')
-    Traceback (most recent call last):
-    ...
-    Unauthorized: ...
-    >>> browser.open(portal_url + '/add_icon.gif')
-    Traceback (most recent call last):
-    ...
-    Unauthorized: ...
+``for``
+  ``iw.rejectanonymous.IPrivateSite`` the marker interface set to private sites
 
-Now let's add our resources to valid ids using our customisation API.
+``manager``
+  Keep the original manager
 
-    >>> from iw.rejectanonymous import addValidIds
-    >>> addValidIds('user.gif', 'add_icon.gif')
+``class``
+  Keep the original viewlet class
 
-And let's check the anonymous can get these resources.
+``permission``
+  Choose a permission that is not granted to an anonymous user but to anyone
+  else. ``cmf.SetOwnProperties`` is a good choice if your site has the standard
+  security policy.
 
-    >>> browser.open(portal_url + '/user.gif')
-    >>> browser.url
-    'http://nohost/plone/user.gif'
-    >>> browser.headers['status'].upper()
-    '200 OK'
-    >>> browser.open(portal_url + '/add_icon.gif')
-    >>> browser.url
-    'http://nohost/plone/add_icon.gif'
-    >>> browser.headers['status'].upper()
-    '200 OK'
+See how we hide the ``plone.personal_bar`` and the ``plone.searchbox`` in the
+``configure.zcml`` of this component.
 
-If the custom pages available to the anonymous user require KSS, those KSS
-resources cannot actually be published.
+Links
+=====
 
-    >>> cooked_kss = self.portal.portal_kss.getCookedResources()[0]
-    >>> cooked_kss_url = '%s/portal_kss/%s' % (portal_url, cooked_kss.getId())
-    >>> browser.open(cooked_kss_url)
-    Traceback (most recent call last):
-    ...
-    Unauthorized: ...
+Cheeseshop
+  http://pypi.python.org/pypi/iw.rejectanonymous
 
-Now let's add our subpart to the valid ones through our customisation API.
+Git repository
+  https://github.com/collective/iw.rejectanonymous
 
-    >>> from iw.rejectanonymous import addValidSubparts
-    >>> addValidSubparts('portal_kss')
+Issue tracker
+  https://github.com/collective/iw.rejectanonymous/issues
 
-And let's check we can now publish KSS resources to anonymous users.
-
-    >>> browser.open(cooked_kss_url)
-    >>> browser.url == cooked_kss_url
-    True
-    >>> browser.headers['status'].upper()
-    '200 OK'
+Old SVN repository (up to 1.0.2)
+  https://svn.plone.org/svn/collective/iw.rejectanonymous
 
 Contributors
 ============
@@ -209,3 +145,4 @@ Contributors
 * Bertrand Mathieu
 * Thomas Desvenain
 * Gilles Lenfant
+* ELisabeth Leddy
