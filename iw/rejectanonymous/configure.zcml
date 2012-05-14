@@ -20,7 +20,7 @@
     name="plone.searchbox"
     for="iw.rejectanonymous.IPrivateSite"
     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-    class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+    class="plone.app.layout.viewlets.common.SearchBoxViewlet"
     permission="cmf.SetOwnProperties"
     />
 
