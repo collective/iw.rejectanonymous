@@ -1,8 +1,21 @@
 Changes log
 ===========
 
-1.1 (unreleased)
-------------------
+1.2 (2012/5/16)
+---------------
+
+- ZCML duplicate viewlet setting
+  [eleddy]
+
+- Typos in README.rst
+  [glenfant]
+
+- Version in setup.py was a float
+  [glenfant]
+
+
+1.1 (2012/5/12)
+---------------
 
 - Added doc for customization
   [glenfant]
