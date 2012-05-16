@@ -6,11 +6,11 @@ def read(*names):
     path = os.path.join(here, *names)
     return open(path, 'r').read().strip()
 
-version = 1.1
+version = '1.2'
 
 setup(name='iw.rejectanonymous',
       version=version,
-      description="Disallow access to a Plone folder and its children if user is anonymous",
+      description="Disallow access to a Plone site and its children if user is anonymous",
       long_description=(read('README.rst')
                         + '\n\n'
                         + read('CHANGES.rst')),
