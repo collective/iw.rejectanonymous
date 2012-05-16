@@ -43,7 +43,7 @@ Changes log
 ------------------
 
 - z3c.autoinclude awareness added so the ZCML slug does not need to be
-  explicitely added in buildout *.cfg.
+  explicitely added in buildout ``*.cfg``.
   [glenfant]
 
 - Add customization utilities and doc (add new enabled ids and subpaths)
