@@ -2,7 +2,6 @@
 iw.rejectanonymous
 ==================
 
-.. contents::
 
 What is iw.rejectanonymous ?
 ============================
@@ -41,7 +40,7 @@ Add ``iw.rejectanonymous`` to the ``eggs`` option of your
 
 Re-run buildout, then open the "Security" control panel of any Plone site of
 your instance. A new **Private site** checkbox lets you (de)activate
-``ìw.rejectanonymous``.
+``iw.rejectanonymous``.
 
 Customization
 =============
@@ -145,4 +144,4 @@ Contributors
 * Bertrand Mathieu
 * Thomas Desvenain
 * Gilles Lenfant
-* ELisabeth Leddy
+* Elisabeth Leddy
