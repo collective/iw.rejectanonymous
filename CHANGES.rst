@@ -1,6 +1,13 @@
 Changes log
 ===========
 
+1.3 (Unreleased)
+----------------
+
+- Include cmf permissions zcml.
+  [thomasdesvenain]
+
+
 1.2 (2012/5/16)
 ---------------
 
