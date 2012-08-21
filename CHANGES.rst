@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.2 (unreleased)
+1.2.2 (2012-08-21)
 ------------------
 
 - 4.2.1 Compatibility.
