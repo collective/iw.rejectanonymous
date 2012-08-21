@@ -7,7 +7,7 @@
   <subscriber
       handler=".insertRejectAnonymousHook"
       for="iw.rejectanonymous.IPrivateSite
-           zope.app.publication.interfaces.IBeforeTraverseEvent"
+           zope.traversing.interfaces.IBeforeTraverseEvent"
       />
 
   <browser:viewlet

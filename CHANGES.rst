@@ -4,7 +4,8 @@ Changes log
 1.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- 4.2.1 Compatibility.
+  [thomasdesvenain]
 
 
 1.2.1 (2012-08-16)
