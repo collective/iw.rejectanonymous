@@ -4,7 +4,8 @@ Changes log
 1.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Rewrite getPortalLogoId to use aq_get instead of try except.
+  [vincentfretin]
 
 
 1.2.2 (2012-08-21)

@@ -17,6 +17,7 @@
 """rejectanonymous initialization"""
 from zope.interface import Interface
 from AccessControl import getSecurityManager
+from Acquisition import aq_get
 from zExceptions import Unauthorized
 
 
@@ -75,11 +76,8 @@ def isAnonymousUser():
     return (u is None or u.getUserName() == 'Anonymous User')
 
 def getPortalLogoId(portal):
-    try:
-        props = portal.base_properties
-        return props.getProperty('logoName')
-    except:  # unsupported versions
-        return None
+    props = aq_get(portal, 'base_properties', None)
+    return props is not None and props.getProperty('logoName', '') or ''
 
 def rejectAnonymous(portal, request):
 
@@ -92,7 +90,7 @@ def rejectAnonymous(portal, request):
 
         if url and not (
             item_id in valid_ids
-            or (logo_id is not None and item_id == logo_id)
+            or item_id == logo_id
             or [path for path in url
                 if path in valid_subparts]
             or [path for path in url
