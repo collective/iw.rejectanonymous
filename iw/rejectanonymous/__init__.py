@@ -100,7 +100,11 @@ def rejectAnonymous(portal, request):
 
 def insertRejectAnonymousHook(portal, event):
     """ """
-    event.request.post_traverse(rejectAnonymous, (portal, event.request))
+    try:
+        event.request.post_traverse(rejectAnonymous, (portal, event.request))
+    except RuntimeError:
+        # Make this work in a testrunner
+        pass
 
 import iw.rejectanonymous.plonecontrolpanel
 
