@@ -7,6 +7,9 @@ Changes log
 - Modified coding style of getPortalLogoId function.
   [vincentfretin]
 
+- Make iw.rejectanonymous work in tests
+  [jaroel]
+
 
 1.2.2 (2012-08-21)
 ------------------
