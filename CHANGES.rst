@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.3 (unreleased)
+1.2.3 (2014-04-30)
 ------------------
 
 - Modified coding style of getPortalLogoId function.
