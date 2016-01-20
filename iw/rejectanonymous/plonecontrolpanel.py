@@ -22,10 +22,16 @@ from zope.interface import (
 from zope.schema import Bool
 from zope.component import getGlobalSiteManager
 from zope.formlib.form import FormFields
-from plone.app.controlpanel import security
+
+
+from plone.app.controlpanel.security import SecurityControlPanel
+from plone.app.controlpanel.security import SecurityControlPanelAdapter
+from plone.app.controlpanel.security import ISecuritySchema
+
 from iw.rejectanonymous import IPrivateSite
 
-class IPrivateSiteSchema(security.ISecuritySchema):
+
+class IPrivateSiteSchema(ISecuritySchema):
     private_site = Bool(
         title=u'Private site',
         description=u"Users must login to view the site. Anonymous users are presented the login form",
@@ -37,29 +43,27 @@ class IPrivateSiteSchema(security.ISecuritySchema):
 def get_private_site(self):
     return IPrivateSite.providedBy(self.portal)
 
-security.SecurityControlPanelAdapter.get_private_site = get_private_site
+SecurityControlPanelAdapter.get_private_site = get_private_site
 
 def set_private_site(self, value):
     operator = value and alsoProvides or noLongerProvides
     operator(self.portal, IPrivateSite)
 
-security.SecurityControlPanelAdapter.set_private_site = set_private_site
+SecurityControlPanelAdapter.set_private_site = set_private_site
 
-security.SecurityControlPanelAdapter.private_site = property(
-    security.SecurityControlPanelAdapter.get_private_site,
-    security.SecurityControlPanelAdapter.set_private_site
+SecurityControlPanelAdapter.private_site = property(
+    SecurityControlPanelAdapter.get_private_site,
+    SecurityControlPanelAdapter.set_private_site
     )
 
 # re-register adapter with new interface
-_decl = implementedBy(security.SecurityControlPanelAdapter)
-_decl -= security.ISecuritySchema
+_decl = implementedBy(SecurityControlPanelAdapter)
+_decl -= ISecuritySchema
 _decl += IPrivateSiteSchema
-classImplementsOnly(security.SecurityControlPanelAdapter, _decl.interfaces())
+classImplementsOnly(SecurityControlPanelAdapter, _decl.interfaces())
 del _decl
 
-getGlobalSiteManager().registerAdapter(security.SecurityControlPanelAdapter)
+getGlobalSiteManager().registerAdapter(SecurityControlPanelAdapter)
 
 # re-instanciate form
-security.SecurityControlPanel.form_fields = FormFields(
-    IPrivateSiteSchema
-    )
+SecurityControlPanel.form_fields = FormFields(IPrivateSiteSchema)
