@@ -80,7 +80,8 @@ def getPortalLogoId(portal):
     return props is not None and props.getProperty('logoName', '') or ''
 
 def rejectAnonymous(portal, request):
-
+    if request['REQUEST_METHOD'] == 'OPTIONS':
+        return
     if isAnonymousUser():
         url = request.physicalPathFromURL(request['URL'])
         if url[-1] == 'index_html':

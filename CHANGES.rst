@@ -4,7 +4,8 @@ Changes log
 1.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Compliancy with plone.rest: allow anonymous OPTIONS requests
+  [ebrehault]
 
 
 1.2.3 (2014-04-30)
