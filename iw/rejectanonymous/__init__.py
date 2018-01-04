@@ -20,6 +20,12 @@ from AccessControl import getSecurityManager
 from Acquisition import aq_get
 from zExceptions import Unauthorized
 
+try:
+    from plone import restapi
+    HAS_RESTAPI = True
+except ImportError:
+    HAS_RESTAPI = False
+
 
 class IPrivateSite(Interface):
     """Marker for sites requiring login"""
@@ -30,6 +36,10 @@ valid_ids = frozenset((
     'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form',
     'pwreset_finish', 'favicon.ico', 'logo.jpg', 'logo.png'
     ))
+
+if HAS_RESTAPI:
+    valid_ids = valid_ids.union(('reset-password', '@login', '@login-renew', '@logout'))
+
 
 valid_subparts = frozenset((
     'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
