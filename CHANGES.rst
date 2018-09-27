@@ -4,6 +4,9 @@ Changes log
 1.2.4 (unreleased)
 ------------------
 
+- If plone.restapi is available, add auth related endpoints to valid ids.
+  [thomasdesvenain]
+
 - Compliancy with plone.rest: allow anonymous OPTIONS requests
   [ebrehault]
 
