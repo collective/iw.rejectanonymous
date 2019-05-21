@@ -120,7 +120,8 @@ form). You need for this to add such lines in your site policy ZCML.
   else. ``cmf.SetOwnProperties`` is a good choice if your site has the standard
   security policy.
 
-See how we hide the ``plone.searchbox`` in the ``configure.zcml`` of this component.
+See how we hide the ``plone.personal_bar`` and the ``plone.searchbox`` in the
+``configure.zcml`` of this component.
 
 Links
 =====

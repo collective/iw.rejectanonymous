@@ -11,6 +11,14 @@
       />
 
   <browser:viewlet
+    name="plone.personal_bar"
+    for="iw.rejectanonymous.IPrivateSite"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+    permission="cmf.SetOwnProperties"
+    />
+
+  <browser:viewlet
     name="plone.searchbox"
     for="iw.rejectanonymous.IPrivateSite"
     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
