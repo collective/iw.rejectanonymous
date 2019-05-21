@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.4 (unreleased)
+1.2.4 (2019-05-21)
 ------------------
 
 - If plone.restapi is available, add auth related endpoints to valid ids.
