@@ -15,13 +15,14 @@
 # along with this program; see the file COPYING. If not, write to the
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 """rejectanonymous initialization"""
-from zope.interface import Interface
 from AccessControl import getSecurityManager
 from Acquisition import aq_get
 from zExceptions import Unauthorized
+from zope.interface import Interface
 
 try:
     from plone import restapi
+
     HAS_RESTAPI = True
 except ImportError:
     HAS_RESTAPI = False
@@ -35,17 +36,17 @@ valid_ids = frozenset((
     'login_form', 'require_login', 'login.js', 'spinner.gif',
     'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form',
     'pwreset_finish', 'favicon.ico', 'logo.jpg', 'logo.png'
-    ))
+))
 
 if HAS_RESTAPI:
     valid_ids = valid_ids.union(('reset-password', '@login', '@login-renew', '@logout'))
 
-
 valid_subparts = frozenset((
     'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
-    ))
+))
 
 valid_subpart_prefixes = frozenset(('++resource++', '++theme++'))
+
 
 # Customization functions
 def addValidIds(*new_ids):
@@ -59,6 +60,7 @@ def addValidIds(*new_ids):
     valid_ids |= set(new_ids)
     return
 
+
 def addValidSubparts(*new_subparts):
     """A customized Plone site may need to publish other subparts for resources
     of the login process. The policy or third party component just need to
@@ -70,6 +72,7 @@ def addValidSubparts(*new_subparts):
     valid_subparts |= set(new_subparts)
     return
 
+
 def addValidSubpartPrefixes(*new_prefixes):
     """A customized Plone site may need to publish other subpart prefixes for
     resources of the login process. The policy or third party component just
@@ -80,14 +83,17 @@ def addValidSubpartPrefixes(*new_prefixes):
     global valid_subpart_prefixes
     valid_subpart_prefixes |= set(new_prefixes)
 
+
 # Utilities
 def isAnonymousUser():
     u = getSecurityManager().getUser()
     return (u is None or u.getUserName() == 'Anonymous User')
 
+
 def getPortalLogoId(portal):
     props = aq_get(portal, 'base_properties', None)
     return props is not None and props.getProperty('logoName', '') or ''
+
 
 def rejectAnonymous(portal, request):
     if request['REQUEST_METHOD'] == 'OPTIONS':
@@ -106,8 +112,9 @@ def rejectAnonymous(portal, request):
                 if path in valid_subparts]
             or [path for path in url
                 if [v for v in valid_subpart_prefixes if path.startswith(v)]]
-                ):
+        ):
             raise Unauthorized, "Anonymous rejected"
+
 
 def insertRejectAnonymousHook(portal, event):
     """ """
@@ -117,5 +124,5 @@ def insertRejectAnonymousHook(portal, event):
         # Make this work in a testrunner
         pass
 
-import iw.rejectanonymous.plonecontrolpanel
 
+import plonecontrolpanel

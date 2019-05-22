@@ -19,8 +19,9 @@
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 
-from Products.Five import zcml
 from Products.Five import fiveconfigure
+from Products.Five import zcml
+
 
 @onsetup
 def setup_reject_anonymous_site():
@@ -31,8 +32,10 @@ def setup_reject_anonymous_site():
     zcml.load_config('configure.zcml', iw.rejectanonymous)
     fiveconfigure.debug_mode = False
 
+
 setup_reject_anonymous_site()
 ptc.setupPloneSite()
+
 
 class TestCase(ptc.FunctionalTestCase):
     """test case used in tests"""

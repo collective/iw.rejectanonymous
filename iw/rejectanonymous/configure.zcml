@@ -1,14 +1,14 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser">
-  
-  <include package="Products.CMFCore" file="permissions.zcml" />
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser">
+
+  <include package="Products.CMFCore" file="permissions.zcml"/>
 
   <subscriber
-      handler=".insertRejectAnonymousHook"
-      for="iw.rejectanonymous.IPrivateSite
+    handler=".insertRejectAnonymousHook"
+    for="iw.rejectanonymous.IPrivateSite
            zope.traversing.interfaces.IBeforeTraverseEvent"
-      />
+  />
 
   <browser:viewlet
     name="plone.personal_bar"
@@ -16,7 +16,7 @@
     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
     class="plone.app.layout.viewlets.common.PersonalBarViewlet"
     permission="cmf.SetOwnProperties"
-    />
+  />
 
   <browser:viewlet
     name="plone.searchbox"
@@ -24,6 +24,6 @@
     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
     class="plone.app.layout.viewlets.common.SearchBoxViewlet"
     permission="cmf.SetOwnProperties"
-    />
+  />
 
 </configure>

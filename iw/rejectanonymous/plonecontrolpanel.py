@@ -16,19 +16,18 @@
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 """Patch plone "security" control panel to add a new option
 """
-from zope.interface import implementedBy
-from zope.interface import classImplementsOnly
-from zope.interface import alsoProvides
-from zope.interface import noLongerProvides
-from zope.schema import Bool
-from zope.component import getGlobalSiteManager
-from zope.formlib.form import FormFields
-
+from plone.app.controlpanel.security import ISecuritySchema
 from plone.app.controlpanel.security import SecurityControlPanel
 from plone.app.controlpanel.security import SecurityControlPanelAdapter
-from plone.app.controlpanel.security import ISecuritySchema
+from zope.formlib.form import FormFields
 
 from iw.rejectanonymous import IPrivateSite
+from zope.component import getGlobalSiteManager
+from zope.interface import alsoProvides
+from zope.interface import classImplementsOnly
+from zope.interface import implementedBy
+from zope.interface import noLongerProvides
+from zope.schema import Bool
 
 
 class IPrivateSiteSchema(ISecuritySchema):
@@ -39,11 +38,10 @@ class IPrivateSiteSchema(ISecuritySchema):
         required=False,
     )
 
-# add accessors to adapter
-
 
 def get_private_site(self):
     return IPrivateSite.providedBy(self.portal)
+
 
 SecurityControlPanelAdapter.get_private_site = get_private_site
 
@@ -51,6 +49,7 @@ SecurityControlPanelAdapter.get_private_site = get_private_site
 def set_private_site(self, value):
     operator = value and alsoProvides or noLongerProvides
     operator(self.portal, IPrivateSite)
+
 
 SecurityControlPanelAdapter.set_private_site = set_private_site
 
