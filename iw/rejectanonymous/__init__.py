@@ -125,4 +125,9 @@ def insertRejectAnonymousHook(portal, event):
         pass
 
 
-import plonecontrolpanel
+try:
+    import plone.app.controlpanel
+except ImportError:
+    pass
+else:
+    import plonecontrolpanel
