@@ -1,5 +1,7 @@
 import os
+
 from setuptools import setup, find_packages
+
 
 def read(*names):
     here = os.path.dirname(os.path.abspath(__file__))
