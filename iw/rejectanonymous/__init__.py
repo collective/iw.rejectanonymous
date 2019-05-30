@@ -33,9 +33,10 @@ class IPrivateSite(Interface):
 
 
 valid_ids = frozenset((
-    'login_form', 'require_login', 'login.js', 'spinner.gif',
-    'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form',
-    'pwreset_finish', 'favicon.ico', 'logo.jpg', 'logo.png'
+    'login', 'login_form', 'require_login',
+    'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form', 'pwreset_finish',
+    'login.js', 'config.js', 'plonejsi18n',
+    'favicon.ico', 'logo.jpg', 'logo.png', 'spinner.gif',
 ))
 
 if HAS_RESTAPI:
@@ -45,7 +46,7 @@ valid_subparts = frozenset((
     'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
 ))
 
-valid_subpart_prefixes = frozenset(('++resource++', '++theme++'))
+valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++static'))
 
 
 # Customization functions
