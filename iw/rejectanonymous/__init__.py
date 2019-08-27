@@ -114,7 +114,7 @@ def rejectAnonymous(portal, request):
             or [path for path in url
                 if [v for v in valid_subpart_prefixes if path.startswith(v)]]
         ):
-            raise Unauthorized, "Anonymous rejected"
+            raise Unauthorized("Anonymous rejected")
 
 
 def insertRejectAnonymousHook(portal, event):
