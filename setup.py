@@ -1,5 +1,7 @@
 import os
+
 from setuptools import setup, find_packages
+
 
 def read(*names):
     here = os.path.dirname(os.path.abspath(__file__))
@@ -21,6 +23,9 @@ setup(name='iw.rejectanonymous',
           "Framework :: Plone :: 3.3",
           "Framework :: Plone :: 4.0",
           "Framework :: Plone :: 4.1",
+          "Framework :: Plone :: 5.0",
+          "Framework :: Plone :: 5.1",
+          "Framework :: Plone :: 5.2",
           "Framework :: Zope2",
           "Programming Language :: Python",
           "Topic :: Software Development :: Libraries :: Python Modules",
