@@ -35,7 +35,7 @@ class IPrivateSite(Interface):
 valid_ids = frozenset((
     'login', 'login_form', 'require_login',
     'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form', 'pwreset_finish',
-    'login.js', 'config.js', 'plonejsi18n',
+    'login.js', 'config.js', 'plonejsi18n', 'less-variables.js',
     'favicon.ico', 'logo.jpg', 'logo.png', 'spinner.gif',
 ))
 

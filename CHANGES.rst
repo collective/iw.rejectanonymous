@@ -4,7 +4,8 @@ Changes log
 1.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add less-variables.js to valid ids for Plone 5.2 compliance.
+  Update classifiers [thomasdesvenain]
 
 
 1.2.4 (2019-05-21)
