@@ -14,8 +14,7 @@ where all visitors must be authenticated.
 Works with
 ==========
 
-* Plone 3
-* Plone 4
+Plone 3, 4, 5
 
 Installation
 ============
