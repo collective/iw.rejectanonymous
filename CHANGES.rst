@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.5 (unreleased)
+1.2.5 (2019-10-18)
 ------------------
 
 - Add less-variables.js to valid ids for Plone 5.2 compliance.
