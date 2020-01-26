@@ -4,7 +4,6 @@ from zope.interface import noLongerProvides
 
 
 def get_private_site(portal):
-    import pdb; pdb.set_trace()
     return IPrivateSite.providedBy(portal)
 
 
