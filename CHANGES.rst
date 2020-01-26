@@ -4,7 +4,8 @@ Changes log
 1.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove pdb
+  [mpeeters]
 
 
 1.2.5 (2019-10-18)
