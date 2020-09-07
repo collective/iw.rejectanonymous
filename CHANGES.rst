@@ -4,6 +4,12 @@ Changes log
 1.2.6 (unreleased)
 ------------------
 
+- Add custom.css to valid_ids (needed since Plone 5.2.2)
+  [ale-rt]
+
+- Add ++unique++ to valid_subpart_prefixes (needed since Plone 5)
+  [ale-rt]
+
 - Remove pdb
   [mpeeters]
 
