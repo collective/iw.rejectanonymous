@@ -37,6 +37,7 @@ valid_ids = frozenset((
     'mail_password_form', 'mail_password', 'contact-info', 'pwreset_form', 'pwreset_finish',
     'login.js', 'config.js', 'plonejsi18n', 'less-variables.js',
     'favicon.ico', 'logo.jpg', 'logo.png', 'spinner.gif',
+    'custom.css',
 ))
 
 if HAS_RESTAPI:
@@ -46,7 +47,9 @@ valid_subparts = frozenset((
     'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
 ))
 
-valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++static'))
+valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++static',
+    '++unique++',
+))
 
 
 # Customization functions
