@@ -4,6 +4,9 @@ Changes log
 1.2.6 (unreleased)
 ------------------
 
+- Add @@ok to valid_ids
+  [ale-rt]
+
 - Add custom.css to valid_ids (needed since Plone 5.2.2)
   [ale-rt]
 
