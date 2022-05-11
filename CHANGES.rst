@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.6 (unreleased)
+1.2.6 (2022-05-11)
 ------------------
 
 - Add @@ok to valid_ids
