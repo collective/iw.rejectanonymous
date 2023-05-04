@@ -4,8 +4,8 @@ Changes log
 1.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add ++webresource++ to valid_subpart_prefixes (Plone 6)
+  [mamico]
 
 1.2.6 (2022-05-11)
 ------------------
