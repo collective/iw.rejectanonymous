@@ -49,7 +49,7 @@ valid_subparts = frozenset((
 ))
 
 valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++static',
-    '++unique++', '++webresource++'
+    '++unique++', '++webresource++', '++plone++',
 ))
 
 
