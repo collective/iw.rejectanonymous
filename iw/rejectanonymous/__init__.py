@@ -48,8 +48,8 @@ valid_subparts = frozenset((
     'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
 ))
 
-valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++static',
-    '++unique++',
+valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++',
+    '++unique++', '++webresource++',
 ))
 
 
