@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.7 (unreleased)
+1.2.7 (2023-05-08)
 ------------------
 
 - Add ++webresource++ and ++plone++ to valid_subpart_prefixes (Plone 6)
