@@ -8,7 +8,7 @@ def read(*names):
     path = os.path.join(here, *names)
     return open(path, 'r').read().strip()
 
-version = '1.2.7'
+version = '1.2.8.dev0'
 
 setup(name='iw.rejectanonymous',
       version=version,
