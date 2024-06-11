@@ -4,7 +4,8 @@ Changes log
 1.2.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Support the requests done with ftw.upgrade script.
+  [ale-rt]
 
 
 1.2.7 (2023-05-08)
