@@ -4,7 +4,7 @@ Changes log
 1.2.8 (unreleased)
 ------------------
 
-- Add @@login to valid_ids
+- Add login views to valid_ids
 
 
 1.2.7 (2023-05-08)
