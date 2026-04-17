@@ -38,7 +38,7 @@ valid_ids = frozenset((
     'login.js', 'config.js', 'plonejsi18n', 'less-variables.js',
     'favicon.ico', 'logo.jpg', 'logo.png', 'spinner.gif',
     'custom.css',
-    '@@ok',
+    '@@login', '@@ok',
 ))
 
 if HAS_RESTAPI:
