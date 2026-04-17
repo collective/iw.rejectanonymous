@@ -1,7 +1,7 @@
 Changes log
 ===========
 
-1.2.8 (unreleased)
+1.2.8 (2026-04-17)
 ------------------
 
 - Add login views to valid_ids
