@@ -45,7 +45,7 @@ if HAS_RESTAPI:
     valid_ids = valid_ids.union(('reset-password', '@login', '@login-renew', '@logout'))
 
 valid_subparts = frozenset((
-    'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss'
+    'portal_css', 'portal_javascripts', 'passwordreset', 'portal_kss', 'upgrades-api',
 ))
 
 valid_subpart_prefixes = frozenset(('++resource++', '++theme++', '++plone++',
